@@ -7,14 +7,14 @@ var SongQueue = Songs.extend({
         this.playFirst();
       }
     }, this);
-    this.on('ended', function() {
-      this.remove(this.at(0));
-    }, this)
+    this.on('ended', this.removeFirst, this)
   },
 
   playFirst: function(){
 
+  },
+
+  removeFirst: function(){
+    this.remove(this.at(0));
   }
-
-
 });
