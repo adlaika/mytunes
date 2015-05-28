@@ -38,9 +38,5 @@ var SongQueue = Songs.extend({
 
   dequeue: function(song){
     this.remove(song);
-  },
-
-  enqueue: function(song) {
-    this.add(song);
   }
 });
