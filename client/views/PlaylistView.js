@@ -4,6 +4,14 @@ var PlaylistView = Backbone.View.extend({
 
   template: _.template('<th> <%= name %> </th>'),
 
+  events: {
+    'click': function(){
+      this.model.get('playlistSongs').each(function(song){
+        song.enqueue();
+      });
+    }
+  },
+
   initialize: function() {
     this.render();
     this.model.get('playlistSongs').on('add remove', function(){
