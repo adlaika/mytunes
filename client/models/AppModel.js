@@ -5,9 +5,6 @@ var AppModel = Backbone.Model.extend({
     this.set('currentSong', new SongModel());
     this.set('songQueue', new SongQueue());
     this.set('playlist', new Playlist(_, {'name': 'My Playlist'}));
-    //PLAYLIST TESTS
-    this.get('playlist').get('playlistSongs').add(new SongModel());
-    this.get('playlist').get('playlistSongs').add(new SongModel());
 
     /* Note that 'this' is passed as the third argument. That third argument is
     the context. The 'play' handler will always be bound to that context we pass in.
@@ -25,9 +22,14 @@ var AppModel = Backbone.Model.extend({
       this.get('songQueue').add(song);
     }, this);
 
+    params.library.on('addToPlaylist', function(song) {
+      this.get('playlist').get('playlistSongs').add(song);
+    }, this);
+
     this.get('songQueue').on('abort', function(){
       this.set('currentSong', null);
     }, this);
+
   }
 
 });

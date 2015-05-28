@@ -22,6 +22,14 @@ var SongModel = Backbone.Model.extend({
     this.trigger('enqueue', this);
   },
 
+  addToPlaylist: function() {
+    this.trigger('addToPlaylist', this);
+  },
+
+  removeFromPlaylist: function() {
+    this.trigger('removeFromPlaylist', this);
+  },
+
   abort: function() {
     this.trigger('abort', this);
   }
