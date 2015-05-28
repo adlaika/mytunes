@@ -9,7 +9,6 @@ var SongQueue = Songs.extend({
     }, this);
 
     this.on('ended', function(){
-      debugger;
       this.removeFirst();
       if(this.length > 0){
         this.playFirst();
@@ -19,14 +18,17 @@ var SongQueue = Songs.extend({
     this.on('dequeue', function(song){
       if(song === this.at(0)){
         this.at(0).abort();
-        this.playFirst();
+        this.dequeue(song);
+        if(this.length > 0){
+          this.playFirst();
+        }
+      } else {
+        this.dequeue(song);
       }
-      this.dequeue(song);
     }, this);
   },
 
   playFirst: function(){
-    console.log(this.at(0));
     this.at(0).play();
   },
 
